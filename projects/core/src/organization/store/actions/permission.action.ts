@@ -1,4 +1,7 @@
-import { Permission } from '../../../model/permission.model';
+import {
+  Permission,
+  OrderApprovalPermissionType,
+} from '../../../model/permission.model';
 import {
   EntityFailAction,
   EntityLoadAction,
@@ -17,6 +20,12 @@ export const LOAD_PERMISSION_SUCCESS =
 export const LOAD_PERMISSIONS = '[Permission] Load Permissions';
 export const LOAD_PERMISSIONS_FAIL = '[Permission] Load Permissions Fail';
 export const LOAD_PERMISSIONS_SUCCESS = '[Permission] Load Permissions Success';
+
+export const LOAD_PERMISSION_TYPES = '[Permission] Load Permission Types';
+export const LOAD_PERMISSION_TYPES_FAIL =
+  '[Permission] Load Permission Types Fail';
+export const LOAD_PERMISSION_TYPES_SUCCESS =
+  '[Permission] Load Permission Types Success';
 
 export const CREATE_PERMISSION = '[Permission] Create Permission';
 export const CREATE_PERMISSION_FAIL = '[Permission] Create Permission Fail';
@@ -132,6 +141,27 @@ export class UpdatePermissionSuccess extends EntitySuccessAction {
   }
 }
 
+export class LoadPermissionTypes extends EntityLoadAction {
+  readonly type = LOAD_PERMISSION_TYPES;
+  constructor(public payload: OrderApprovalPermissionType) {
+    super(PERMISSION_ENTITIES, payload.code);
+  }
+}
+
+export class LoadPermissionTypesFail extends EntityFailAction {
+  readonly type = LOAD_PERMISSION_TYPES_FAIL;
+  constructor(public payload: { error: any }) {
+    super(PERMISSION_ENTITIES, payload.error);
+  }
+}
+
+export class LoadPermissionTypesSuccess extends EntitySuccessAction {
+  readonly type = LOAD_PERMISSION_TYPES_SUCCESS;
+  constructor(public payload: OrderApprovalPermissionType) {
+    super(PERMISSION_ENTITIES, payload.code, payload);
+  }
+}
+
 export type PermissionAction =
   | LoadPermission
   | LoadPermissionFail
@@ -144,4 +174,7 @@ export type PermissionAction =
   | CreatePermissionSuccess
   | UpdatePermission
   | UpdatePermissionFail
-  | UpdatePermissionSuccess;
+  | UpdatePermissionSuccess
+  | LoadPermissionTypes
+  | LoadPermissionTypesFail
+  | LoadPermissionTypesSuccess;

@@ -12,6 +12,8 @@ export class PermissionConnector {
   constructor(protected adapter: PermissionAdapter) {}
 
   get(userId: string, permissionCode: string): Observable<Permission> {
+    // tslint:disable-next-line: no-debugger
+    debugger;
     return this.adapter.load(userId, permissionCode);
   }
 

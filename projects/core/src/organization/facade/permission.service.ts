@@ -44,6 +44,10 @@ export class PermissionService {
     );
   }
 
+  // loadPermissionsType() {
+  //   this.store.dispatch(new PermissionActions.LoadPermissionTypes());
+  // }
+
   private getPermissionState(permissionCode: string) {
     return this.store.select(getPermissionState(permissionCode));
   }
@@ -53,6 +57,11 @@ export class PermissionService {
   ): Observable<LoaderState<EntitiesModel<Permission>>> {
     return this.store.select(getPermissionList(params));
   }
+
+  // private getPermissionType(
+  // ): Observable<LoaderState<EntitiesModel<Permission>>> {
+  //   return this.store.select(getPermissionType());
+  // }
 
   get(permissionCode: string): Observable<Permission> {
     return this.getPermissionState(permissionCode).pipe(
@@ -84,6 +93,24 @@ export class PermissionService {
       },
     ]);
   }
+
+  // getPermissionTypes(): Observable<EntitiesModel<OrderApprovalPermissionType>> {
+  //   return this.getPermissionType().pipe(
+  //     observeOn(queueScheduler),
+  //     tap(
+  //       (process: LoaderState<EntitiesModel<OrderApprovalPermissionType>>) => {
+  //         if (!(process.loading || process.success || process.error)) {
+  //           this.loadPermissionsType();
+  //         }
+  //       }
+  //     ),
+  //     filter(
+  //       (process: LoaderState<EntitiesModel<OrderApprovalPermissionType>>) =>
+  //         process.success || process.error
+  //     ),
+  //     map(result => result.value)
+  //   );
+  // }
 
   getList(params: B2BSearchConfig): Observable<EntitiesModel<Permission>> {
     return this.getPermissionList(params).pipe(

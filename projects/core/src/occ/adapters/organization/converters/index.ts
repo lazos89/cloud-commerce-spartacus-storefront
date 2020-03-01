@@ -6,3 +6,4 @@ export * from './occ-org-unit-normalizer';
 export * from './occ-org-unit-list-normalizer';
 export * from './occ-cost-center-normalizer';
 export * from './occ-cost-center-list-normalizer';
+export * from './occ-permission-type-normalizer';

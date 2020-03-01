@@ -4,6 +4,7 @@ import {
   ListModel,
   B2BUnitNode,
   Permission,
+  OrderApprovalPermissionType,
 } from '../../model';
 import { EntityLoaderState } from '../../state/utils/entity-loader/entity-loader-state';
 
@@ -26,6 +27,10 @@ export const ORG_UNIT_FEATURE = 'orgUnit';
 export const ORG_UNIT_ENTITIES = 'orgUnit-entities';
 export const ORG_UNIT_LIST = 'orgUnit-list';
 
+export const PERMISSION_TYPE_FEATURE = 'permissionType';
+export const PERMISSION_TYPE_ENTITIES = 'permissionType-entities';
+export const PERMISSION_TYPE_LIST = 'permissionType-list';
+
 export interface Management<Type> {
   list: EntityLoaderState<ListModel>;
   entities: EntityLoaderState<Type>;
@@ -34,6 +39,9 @@ export interface Management<Type> {
 export interface BudgetManagement extends Management<Budget> {}
 
 export interface OrgUnits extends Management<B2BUnitNode> {}
+
+export interface PermissionType
+  extends Management<OrderApprovalPermissionType> {}
 
 export interface PermissionManagement extends Management<Permission> {}
 
@@ -50,4 +58,5 @@ export interface OrganizationState {
   [ORG_UNIT_FEATURE]: OrgUnits;
   [PERMISSION_FEATURE]: PermissionManagement;
   [COST_CENTER_FEATURE]: CostCenterManagement;
+  [PERMISSION_TYPE_FEATURE]: PermissionType;
 }

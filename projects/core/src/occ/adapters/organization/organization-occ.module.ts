@@ -6,6 +6,7 @@ import { ConfigModule } from '../../../config/config.module';
 import { BudgetAdapter } from '../../../organization/connectors/budget/budget.adapter';
 import { PermissionAdapter } from '../../../organization/connectors/permission/permission.adapter';
 import { OrgUnitAdapter } from '../../../organization/connectors/org-unit/org-unit.adapter';
+import { PermissionTypeAdapter } from '../../../organization/connectors/permissionType/permissionType.adapter';
 import { CostCenterAdapter } from '../../../organization/connectors/cost-center/cost-center.adapter';
 import {
   BUDGET_NORMALIZER,
@@ -15,6 +16,7 @@ import {
   B2BUNIT_NORMALIZER,
   B2BUNIT_LIST_NORMALIZER,
 } from '../../../organization/connectors/org-unit/converters';
+import { PERMISSION_TYPE_NORMALIZER } from '../../../organization/connectors/permissionType/converters';
 import {
   PERMISSION_NORMALIZER,
   PERMISSIONS_NORMALIZER,
@@ -29,6 +31,7 @@ import { OccBudgetAdapter } from './occ-budget.adapter';
 import { OccOrgUnitAdapter } from './occ-org-unit.adapter';
 import { OccPermissionAdapter } from './occ-permission.adapter';
 import { OccCostCenterAdapter } from './occ-cost-center.adapter';
+import { OccPermissionTypeAdapter } from './occ-permission-type.adapter';
 import {
   OccBudgetNormalizer,
   OccBudgetListNormalizer,
@@ -38,6 +41,7 @@ import {
   OccPermissionListNormalizer,
   OccCostCenterListNormalizer,
   OccCostCenterNormalizer,
+  OccPermissionTypeNormalizer,
 } from './converters/index';
 
 @NgModule({
@@ -69,6 +73,15 @@ import {
     {
       provide: B2BUNIT_LIST_NORMALIZER,
       useClass: OccOrgUnitListNormalizer,
+      multi: true,
+    },
+    {
+      provide: PermissionTypeAdapter,
+      useClass: OccPermissionTypeAdapter,
+    },
+    {
+      provide: PERMISSION_TYPE_NORMALIZER,
+      useClass: OccPermissionTypeNormalizer,
       multi: true,
     },
     {

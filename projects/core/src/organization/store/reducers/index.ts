@@ -23,11 +23,15 @@ import {
   COST_CENTER_ENTITIES,
   COST_CENTER_LIST,
   COST_CENTER_ASSIGNED_BUDGETS,
+  PERMISSION_TYPE_ENTITIES,
+  PERMISSION_TYPE_FEATURE,
+  PERMISSION_TYPE_LIST,
 } from '../organization-state';
 import { budgetsListReducer } from './budget.reducer';
 import { orgUnitListReducer } from './org-unit.reducer';
 import { permissionsListReducer } from './permission.reducer';
 import { costCentersListReducer } from './cost-center.reducer';
+import { permissionTypeListReducer } from './permission-type.reducer';
 
 export function getReducers(): ActionReducerMap<OrganizationState> {
   return {
@@ -45,6 +49,10 @@ export function getReducers(): ActionReducerMap<OrganizationState> {
     [ORG_UNIT_FEATURE]: combineReducers({
       entities: entityLoaderReducer<B2BUnitNode>(ORG_UNIT_ENTITIES),
       list: entityLoaderReducer<ListModel>(ORG_UNIT_LIST, orgUnitListReducer),
+    }),
+    [PERMISSION_TYPE_FEATURE]: combineReducers({
+      entities: entityLoaderReducer<B2BUnitNode>(PERMISSION_TYPE_ENTITIES),
+      list: entityLoaderReducer<ListModel>(PERMISSION_TYPE_LIST, permissionTypeListReducer),
     }),
     [COST_CENTER_FEATURE]: combineReducers({
       entities: entityLoaderReducer<CostCenter>(COST_CENTER_ENTITIES),
